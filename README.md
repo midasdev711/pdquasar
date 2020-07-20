@@ -11,6 +11,10 @@ yarn
 ```bash
 quasar dev
 ```
+### Start the electron app(Desktop windows) in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev -m electron
+```
 
 ### Lint the files
 ```bash
