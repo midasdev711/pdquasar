@@ -16,11 +16,24 @@ const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
+    meta: {
+      requiresAuth: true,
+    },
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
+      { path: '', name: 'Index', meta: { requiresAuth: true }, component: () => import('pages/Index.vue') },
       {
-        path: '/assets', component: () => import('pages/Assets.vue')
+        path: '/assets', name: 'Assets', meta: { requiresAuth: true }, component: () => import('pages/Assets.vue')
       }
+    ]
+  },
+
+  {
+    path: '/auth',
+    component: () => import('layouts/AuthLayout.vue'),
+    name: "Auth",
+    redirect: "/auth/login",
+    children: [
+      { path: '/login', name: 'Login', component: () => import('pages/Login.vue') },
     ]
   },
 

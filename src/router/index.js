@@ -25,5 +25,17 @@ export default function ({ store }) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
+  Router.beforeEach((to, from, next) => {
+    //auth route is authenticated
+    if (to.matched.some((m) => m.meta.requiresAuth)) {
+      var token = localStorage.getItem('token');
+      
+      if (!token && to.name !== 'Login') {
+        next({ name: 'Login' })
+      }
+    }
+
+    next()
+  })
   return Router
 }
