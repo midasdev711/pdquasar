@@ -14,6 +14,13 @@
           />
         </q-card-section>
       </q-slide-transition>
+      <q-card-section>
+        <q-uploader
+          label="Upload files"
+          url="http://localhost:4444/upload"
+          style="width: 100%"
+        />
+      </q-card-section>
     </q-card>
 
   </div>
@@ -22,7 +29,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: "AttachmentSectionWithUpload",
+  name: "AttachmentSection",
 
   data () {
     return {
