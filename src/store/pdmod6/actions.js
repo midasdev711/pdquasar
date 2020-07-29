@@ -12,10 +12,11 @@ var login = function () {
         .catch((error) => console.log(error))
 }
 
-var loadAssetData = function () {
-    return axios.get('https://run.mocky.io/v3/2b4ebd98-9e55-4060-bee8-0d36f44f9c4e')
+var loadAssetData = function ({commit}) {
+    return axios.get('https://run.mocky.io/v3/0c938f7a-f230-4638-85be-84345a4776de')
         .then((response) => {
             console.log(response);
+            commit("updateAssets", response.data);
         })
         .catch((error) => console.log(error))
 }

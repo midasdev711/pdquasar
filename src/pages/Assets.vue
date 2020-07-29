@@ -9,11 +9,42 @@
       @click="basic = true"
     />
     <q-table
-      title="Equipment/Assets"
+      title="Treats"
       :data="data"
       :columns="columns"
       row-key="id"
-    />
+      :filter="filters"
+      :filter-method="customFilter"
+    >
+      <template v-slot:top-right>
+        <q-input borderless dense debounce="300" v-model="filters['global']" placeholder="Search">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+      <template v-slot:header="props">
+        <q-tr :props="props">
+          <q-th
+            v-for="col in props.cols"
+            :key="col.name"
+            :props="props"
+          >
+            {{ col.label }}
+          </q-th>
+        </q-tr>
+      </template>
+      <template v-slot:top-row>
+        <q-tr>
+          <q-td 
+            v-for="col in columns"
+            :key="col.name"
+          >
+            <q-input v-model="filters[col.label]" :label="col.label" />
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
     <q-dialog v-model="basic" transition-show="rotate" transition-hide="rotate">
       <q-card>
         <q-card-section>
@@ -92,6 +123,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   computed: {
     filteredDocTypes() {
@@ -117,7 +150,8 @@ export default {
       files: null,
       docTypes: this.$store.state.pdmod6.refData.docTypes,
       eqpSelectType: "",
-      eqpSelectSubType: ""
+      eqpSelectSubType: "",
+      filters: {},
     };
   },
   created() {
@@ -125,20 +159,20 @@ export default {
     // already being observed
     this.fetchData();
   },
-  watch: {
-    // call again the method if the route changes
-    $route: "fetchData"
-  },
   methods: {
+    ...mapActions('pdmod6', {
+      loadAssetData: 'loadAssetData'
+    }),
     fetchData() {
-      this.$axios
-        .get("https://run.mocky.io/v3/0c938f7a-f230-4638-85be-84345a4776de")
+      this.loadAssetData()
         .then(response => {
-          console.log(this.$store);
           console.log(response.data);
-          this.$store.commit("pdmod6/updateAssets", response.data);
+          // this.$store.commit("pdmod6/updateAssets", response.data);
         })
         .catch(error => console.log(error));
+    },
+    customFilter(rows, terms, cols, getCellValue) {
+      return rows;
     },
     onAddNew() {
       confirm("Test");
