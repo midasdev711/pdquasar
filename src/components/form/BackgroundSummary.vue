@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col q-pa-sm">
               <q-input
-                v-model="text"
+                v-model="form.description"
                 label="Description *"
                 type="textarea"
               />
@@ -18,46 +18,46 @@
           <div class="row">
             <div class="col q-pa-sm">
               <q-select v-model="form.assestType" :options="options" label="Pipette-Eqp Type *" />
-              <q-select v-model="model" :options="options" label="Manufacturer *" />
-              <q-select v-model="model" :options="options" label="Brand *" />
-              <q-select v-model="model" :options="options" label="Model-Vol. *" />
-              <q-select v-model="model" :options="options" label="S/L No: *" />
-              <q-input v-model="dateOfPurchase" mask="date" :rules="['date']" class="date-picker">
+              <q-select v-model="form.assestSubType" :options="options" label="Manufacturer *" />
+              <q-select v-model="form.manfr" :options="options" label="Brand *" />
+              <q-select v-model="form.model" :options="options" label="Model-Vol. *" />
+              <q-select v-model="form.slNo" :options="options" label="S/L No: *" />
+              <q-input v-model="form.dateOfPurchase" mask="date" :rules="['date']" class="date-picker">
                 <template v-slot:append>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                      <q-date v-model="dateOfPurchase" @input="() => $refs.qDateProxy.hide()" />
+                      <q-date v-model="form.dateOfPurchase" @input="() => $refs.qDateProxy.hide()" />
                     </q-popup-proxy>
                   </q-icon>
                 </template>
               </q-input>
-              <q-input v-model="dateOfServiceStart" mask="date" :rules="['date']" class="date-picker">
+              <q-input v-model="form.dateOfServiceStarted" mask="date" :rules="['date']" class="date-picker">
                 <template v-slot:append>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                      <q-date v-model="dateOfServiceStart" @input="() => $refs.qDateProxy.hide()" />
+                      <q-date v-model="form.dateOfServiceStarted" @input="() => $refs.qDateProxy.hide()" />
                     </q-popup-proxy>
                   </q-icon>
                 </template>
               </q-input>
-              <q-input v-model="text" label="ID" />
-              <q-select v-model="model" :options="options" label="Tip Type" />
+              <q-input v-model="form.po" label="ID" />
+              <q-select v-model="form.criticality" :options="options" label="Tip Type" />
             </div>
             <div class="col q-pa-sm">
-              <q-select v-model="model" :options="options" label="Customer Name *" />
-              <q-select v-model="model" :options="options" label="Street Address *" />
-              <q-select v-model="model" :options="options" label="City-Zip Code *" />
-              <q-select v-model="model" :options="options" label="Contact" />
-              <q-select v-model="model" :options="options" label="Ph. No" />
-              <q-select v-model="model" :options="options" label="Account Mgr *" />
-              <q-select v-model="model" :options="options" label="Owning dept" />
-              <q-select v-model="model" :options="options" label="Physical Location1" />
-              <q-select v-model="model" :options="options" label="Physical Location1-2" />
+              <q-select v-model="form.businessSegment" :options="options" label="Customer Name *" />
+              <q-select v-model="form.subBusinessSegment" :options="options" label="Street Address *" />
+              <q-select v-model="form.siteLocation" :options="options" label="City-Zip Code *" />
+              <q-select v-model="form.siteLocation2" :options="options" label="Contact" />
+              <q-select v-model="form.siteLocation3" :options="options" label="Ph. No" />
+              <q-select v-model="form.owner" :options="options" label="Account Mgr *" />
+              <q-select v-model="form.owningDept" :options="options" label="Owning dept" />
+              <q-select v-model="form.location1" :options="options" label="Physical Location1" />
+              <q-select v-model="form.location2" :options="options" label="Physical Location1-2" />
             </div>
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <template v-for="(note, index) in notes">
+              <template v-for="(note, index) in riskNotes">
                 <q-input
                   v-model="note.value"
                   label="Risk notes"
@@ -96,20 +96,33 @@ export default {
     return {
       visible: true,
       separator: 'cell',
-      text: "",
-      model: "",
       options: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
-      dateOfPurchase: '2019/02/01',
-      dateOfServiceStart: '2019/02/01',
-      noteCount: 1,
-      notes: [{
+      riskNotes: [{
         value: "",
         date: new Date()
       }],
       form: {
-        assestType: null
+        description: null,
+        assestType: null,
+        assestSubType: null,
+        manfr: null,
+        model: null,
+        slNo: null,
+        businessSegment: null,
+        dateOfPurchase: null,
+        dateOfServiceStarted: null,
+        po: null,
+        criticality: null,
+        subBusinessSegment: null,
+        siteLocation: null,
+        siteLocation2: null,
+        siteLocation3: null,
+        owner: null,
+        owningDept: null,
+        location1: null,
+        location2: null
       }
     }
   },
