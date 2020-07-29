@@ -40,7 +40,7 @@
             v-for="col in columns"
             :key="col.name"
           >
-            <q-input v-model="filters[col.label]" :label="col.label" />
+            <q-input v-model="filters[col.name]" :label="col.label" />
           </q-td>
         </q-tr>
       </template>
@@ -166,13 +166,36 @@ export default {
     fetchData() {
       this.loadAssetData()
         .then(response => {
-          console.log(response.data);
           // this.$store.commit("pdmod6/updateAssets", response.data);
         })
         .catch(error => console.log(error));
     },
     customFilter(rows, terms, cols, getCellValue) {
-      return rows;
+      // console.log(rows, terms);
+      let filteredItems = rows.filter(item => {
+        let isCorrectItem = true;
+
+        for (var key in terms) {
+          if (key != 'global') {
+            if (item[key].indexOf(terms[key]) == -1) {
+              isCorrectItem = false;
+            }
+          }
+          if (key == 'global') {
+            let isIncludeGlobalWord = false;
+            for (var itemKey in item) {
+              if (item[itemKey].toString().indexOf(terms['global']) > -1) {
+                isIncludeGlobalWord = true;
+              }
+            }
+            isCorrectItem = isCorrectItem && isIncludeGlobalWord;
+          }
+        }
+        if (isCorrectItem) {
+          return item;
+        }
+      });
+      return filteredItems;
     },
     onAddNew() {
       confirm("Test");
