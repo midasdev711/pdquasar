@@ -89,7 +89,7 @@
                   label="Results Summary"
                   type="textarea"
                   :hint="`${note.date} System Admin`"
-                  :key="`note-${index}`"
+                  :key="`summary-${index}`"
                 />
               </template>
             </div>
@@ -133,7 +133,7 @@
           </div>
           <h6>Squares Used</h6>
           <template v-for="(row, index) in spareRows">
-            <div class="row" :key="index">
+            <div class="row" :key="`square-${index}`">
               <div class="col-2" style="padding-top: 40px; text-align: center">
                 Square Used {{index+1}}
               </div>

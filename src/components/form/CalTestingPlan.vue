@@ -112,6 +112,7 @@ export default {
       visible: true,
       radio1: true,
       model: null,
+      text: "",
       options: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],

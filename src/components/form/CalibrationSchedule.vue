@@ -54,6 +54,7 @@ export default {
 
   data () {
     return {
+      separator: 'cell',
       columns: [
         {
           name: 'fileId',

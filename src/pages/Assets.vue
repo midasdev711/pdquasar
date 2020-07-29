@@ -9,7 +9,6 @@
       @click="basic = true"
     />
     <q-table
-      title="Treats"
       :data="data"
       :columns="columns"
       row-key="id"
@@ -177,14 +176,14 @@ export default {
 
         for (var key in terms) {
           if (key != 'global') {
-            if (item[key].indexOf(terms[key]) == -1) {
+            if (item[key].toLowerCase().indexOf(terms[key].toLowerCase()) == -1) {
               isCorrectItem = false;
             }
           }
           if (key == 'global') {
             let isIncludeGlobalWord = false;
             for (var itemKey in item) {
-              if (item[itemKey].toString().indexOf(terms['global']) > -1) {
+              if (item[itemKey].toString().toLowerCase().indexOf(terms['global'].toLowerCase()) > -1) {
                 isIncludeGlobalWord = true;
               }
             }

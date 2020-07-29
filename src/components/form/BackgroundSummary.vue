@@ -17,7 +17,7 @@
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <q-select v-model="model" :options="options" label="Pipette-Eqp Type *" />
+              <q-select v-model="form.assestType" :options="options" label="Pipette-Eqp Type *" />
               <q-select v-model="model" :options="options" label="Manufacturer *" />
               <q-select v-model="model" :options="options" label="Brand *" />
               <q-select v-model="model" :options="options" label="Model-Vol. *" />
@@ -107,7 +107,10 @@ export default {
       notes: [{
         value: "",
         date: new Date()
-      }]
+      }],
+      form: {
+        assestType: null
+      }
     }
   },
 
