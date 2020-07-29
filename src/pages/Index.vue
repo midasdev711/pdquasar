@@ -9,6 +9,8 @@
     <AttachmentSectionWithUpload/>
     <Background/>
     <CalTestingPlan/>
+    <CalResultRecording/>
+    <RolesAndResponsibility/>
   </q-page>
 </template>
 
@@ -22,6 +24,7 @@ import RolesAndResponsibility from '../components/form/RolesAndResponsibility';
 import AttachmentSectionWithUpload from '../components/form/AttachmentSectionWithUpload';
 import Background from '../components/form/Background';
 import CalTestingPlan from '../components/form/CalTestingPlan';
+import CalResultRecording from '../components/form/CalResultRecording';
 
 
 export default {
@@ -35,7 +38,8 @@ export default {
     RolesAndResponsibility,
     AttachmentSectionWithUpload,
     Background,
-    CalTestingPlan
+    CalTestingPlan,
+    CalResultRecording
   }
 }
 </script>

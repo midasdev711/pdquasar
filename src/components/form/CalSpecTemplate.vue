@@ -61,29 +61,30 @@
               <q-input v-model="text" label="Corre Factor" />
             </div>
           </div>
-          <div class="row">
-            <div class="col q-pa-sm">
-              <template v-for="(note, index) in notes">
-                <q-input
-                  v-model="note.value"
-                  label="Risk notes"
-                  type="textarea"
-                  :hint="`${note.date} System Admin`"
-                  :key="`note-${index}`"
-                />
-              </template>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col">
+              <q-table
+                :data="data"
+                :columns="columns"
+                row-key="name"
+                hide-bottom
+              />
             </div>
           </div>
-          <div class="row">
-            <div class="col q-pa-sm">
-              <q-btn
-                align="around"
-                class="btn-fixed-width"
-                color="primary"
-                label="Add New"
-                icon="add"
-                @click="addNew"
+          <div class="row" style="margin-top: 20px;">
+            <div class="col">
+              <q-table
+                :data="data"
+                :columns="columns"
+                row-key="name"
+                hide-bottom
               />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col">
+              <p>Note1: The unit of results is: ( mg )</p>
+              <p>Note2: The results will be corrected with the correction factor.</p>
             </div>
           </div>
         </q-card-section>
@@ -99,6 +100,82 @@ export default {
 
   data () {
     return {
+      columns: [
+        {
+          name: 'title',
+          required: true,
+          label: '',
+          align: 'left',
+          field: row => row.title,
+        },
+        {
+          name: 'result',
+          label: 'Result(As Found)',
+          field: row => row.result,
+        },
+        {
+          name: 'avg',
+          label: 'Avg',
+          field: row => row.avg
+        },
+        {
+          name: 'sd',
+          label: 'SD',
+          field: row => row.sd
+        },
+        {
+          name: 'cv',
+          label: 'CV(%)',
+          field: row => row.cv
+        },
+        {
+          name: 'target',
+          label: 'Target',
+          field: row => row.target
+        },
+        {
+          name: 'diff',
+          label: 'Diff(%)',
+          field: row => row.diff
+        },
+        {
+          name: 'pf',
+          label: 'Pass/Fail',
+          field: row => row.pf
+        },
+      ],
+      data: [
+        {
+          title: "5OuL",
+          result: "No. Counter",
+          avg: '',
+          sd: '',
+          cv: '<=0.3',
+          target: '50.0',
+          diff: '<=0.7',
+          pf: 'Test User',
+        },
+        {
+          title: "5OuL",
+          result: "No. Counter",
+          avg: '',
+          sd: '',
+          cv: '<=0.3',
+          target: '50.0',
+          diff: '<=0.7',
+          pf: 'Test User',
+        },
+        {
+          title: "5OuL",
+          result: "No. Counter",
+          avg: '',
+          sd: '',
+          cv: '<=0.3',
+          target: '50.0',
+          diff: '<=0.7',
+          pf: 'Test User',
+        },
+      ],
       visible: true,
       separator: 'cell',
       text: "",
