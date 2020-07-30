@@ -57,7 +57,7 @@
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <template v-for="(note, index) in riskNotes">
+              <template v-for="(note, index) in form.riskNotes">
                 <q-input
                   v-model="note.value"
                   label="Risk notes"
@@ -99,10 +99,7 @@ export default {
       options: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
-      riskNotes: [{
-        value: "",
-        date: new Date()
-      }],
+      
       form: {
         description: null,
         assestType: null,
@@ -122,7 +119,11 @@ export default {
         owner: null,
         owningDept: null,
         location1: null,
-        location2: null
+        location2: null,
+        riskNotes: [{
+          value: "",
+          date: new Date()
+        }],
       }
     }
   },
@@ -137,7 +138,7 @@ export default {
     },
 
     addNew() {
-      this.notes.push({
+      this.form.riskNotes.push({
         value: "",
         date: new Date()
       });
