@@ -9,8 +9,8 @@
       @click="basic = true"
     />
     <q-table
-      :data="data"
-      :columns="columns"
+      :data="assetsData"
+      :columns="assetsColumnInfo"
       row-key="id"
       :filter="filters"
       :filter-method="customFilter"
@@ -36,7 +36,7 @@
       <template v-slot:top-row>
         <q-tr>
           <q-td 
-            v-for="col in columns"
+            v-for="col in assetsColumnInfo"
             :key="col.name"
           >
             <q-input v-model="filters[col.name]" :label="col.label" />
@@ -44,71 +44,14 @@
         </q-tr>
       </template>
     </q-table>
-    <q-dialog v-model="basic" transition-show="rotate" transition-hide="rotate">
+    <q-dialog v-model="basic" transition-show="rotate" transition-hide="rotate" full-width>
       <q-card>
         <q-card-section>
           <div class="text-h6">Add New Master Asset</div>
         </q-card-section>
-
+        
         <q-card-section class="q-pt-none">
-          <p v-for="n in 1" :key="n">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-            repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis
-            perferendis totam, ea at omnis vel numquam exercitationem aut, natus
-            minima, porro labore.
-          </p>
-          <q-form>
-            <q-expansion-item
-              switch-toggle-side
-              expand-separator
-              icon="attach_file"
-              label="Attachments"
-            >
-              <q-layout>
-                <div class="row">
-                  <div class="col-10">
-                    <q-file
-                      v-model="files"
-                      label="Pick Attachments"
-                      filled
-                      multiple
-                      style="max-width: 300px"
-                    />
-                  </div>
-                  <div class="col">
-                    <q-btn round color="secondary" icon="delete" />
-                  </div>
-                </div>
-              </q-layout>
-            </q-expansion-item>
-            <q-expansion-item
-              switch-toggle-side
-              expand-separator
-              icon="background"
-              label="Eqp Background Summary"
-            >
-              <div class="q-gutter-y-md column" style="max-width: 300px">
-                <q-select
-                  clearable
-                  filled
-                  color="purple-12"
-                  v-model="eqpSelectType"
-                  :options="filteredDocTypes"
-                  label="Eqp Type:"
-                />
-              </div>
-              <div class="q-gutter-y-md column" style="max-width: 300px">
-                <q-select
-                  clearable
-                  filled
-                  color="purple-12"
-                  v-model="eqpSelectSubType"
-                  :options="filteredSubDocTypes"
-                  label="Eqp Sub Type:"
-                />
-              </div>
-            </q-expansion-item>
-          </q-form>
+          <Form1 />
         </q-card-section>
 
         <q-card-actions align="right">
@@ -123,9 +66,27 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Form1 from '../components/Form1';
 
 export default {
+  data() {
+    return {
+      basic: false,
+      files: null,
+      docTypes: this.$store.state.pdmod6.refData.docTypes,
+      eqpSelectType: "",
+      eqpSelectSubType: "",
+      filters: {},
+    };
+  },
+  components: {
+    Form1
+  },
   computed: {
+    ...mapGetters("pdmod6", {
+      assetsData: "assetsData",
+      assetsColumnInfo: "assetsColumnInfo"
+    }),
     filteredDocTypes() {
       var filteredList = this.$store.state.pdmod6.refData.docTypes.map(
         e => e.type
@@ -140,18 +101,6 @@ export default {
       var uniqList = [...new Set(filteredList)];
       return uniqList;
     }
-  },
-  data() {
-    return {
-      columns: this.$store.state.pdmod6.assetsColumnInfo,
-      data: this.$store.state.pdmod6.assetsData,
-      basic: false,
-      files: null,
-      docTypes: this.$store.state.pdmod6.refData.docTypes,
-      eqpSelectType: "",
-      eqpSelectSubType: "",
-      filters: {},
-    };
   },
   created() {
     // fetch the data when the view is created and the data is

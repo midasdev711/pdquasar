@@ -23,6 +23,9 @@ const routes = [
       { path: '', name: 'Index', meta: { requiresAuth: true }, component: () => import('pages/Index.vue') },
       {
         path: '/assets', name: 'Assets', meta: { requiresAuth: true }, component: () => import('pages/Assets.vue')
+      },
+      {
+        path: '/calibrations', name: 'Calibrations', meta: { requiresAuth: true }, component: () => import('pages/Calibrations.vue')
       }
     ]
   },

@@ -15,7 +15,6 @@
         </q-card-section>
       </q-slide-transition>
     </q-card>
-
   </div>
 </template>
 

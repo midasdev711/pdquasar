@@ -3,58 +3,30 @@ export default function () {
     //
     initialized: false,
     isLoadingAssetData: false,
-    assetsData: [{
-      'id': 1,
-      'viewId': 'MPL000111',
-      'eqpType': 'Measuring Instruments',
-      'manufacturer': 'Temp. Sensors1',
-      'brand': 'Neptronic',
-      'model': 'TCB50',
-      'description': 'Temp. Sensor - 52'
-    },
-    {
-      'id': 2,
-      'viewId': 'MPL000112',
-      'eqpType': 'Measuring Instruments',
-      'manufacturer': 'Temp. Sensors3',
-      'brand': 'Neptronic',
-      'model': 'TCB50',
-      'description': 'Temp. Sensor - 52'
-    },
-    {
-      'id': 3,
-      'viewId': 'MPL000113',
-      'eqpType': 'Measuring Instruments',
-      'manufacturer': 'Temp. Sensors2',
-      'brand': 'Neptronic',
-      'model': 'TCB50',
-      'description': 'Temp. Sensor - 52'
-    },
-    {
-      'id': 4,
-      'viewId': 'MPL000114',
-      'eqpType': 'Measuring Instruments',
-      'manufacturer': 'Temp. Sensors1',
-      'brand': 'Neptronic',
-      'model': 'TCB50',
-      'description': 'Temp. Sensor - 52'
-    },
-    ],
+    assetsData: [],
+    calibrationsData: [],
     assetsColumnInfo: [
+      { name: 'masterViewId', label: 'Master View Id', field: 'masterViewId', sortable: true },
+      { name: 'owner', align: 'center', label: 'Owner', field: 'owner', sortable: true },
+      { name: 'model', label: 'Model', field: 'model' },
+      { name: 'recordType', label: 'Record Type', field: 'recordType' },
+      { name: 'siteLocation', label: 'Site Location', field: 'siteLocation' },
+      { name: 'description', label: 'Description', field: 'description', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
+    ],
+    calibrationsColumnInfo: [
       {
-        name: 'id',
+        name: 'authorId',
         required: true,
         label: 'Id',
         align: 'left',
-        field: row => row.id,
+        field: row => row.authorId,
         format: val => `${val}`,
         sortable: true
       },
-      { name: 'viewId', align: 'center', label: 'Record ID', field: 'viewId', sortable: true },
-      { name: 'eqpType', label: 'Equipment Type', field: 'eqpType', sortable: true },
-      { name: 'manufacturer', label: 'Manufacturer', field: 'manufacturer' },
-      { name: 'brand', label: 'Brand', field: 'brand' },
-      { name: 'model', label: 'Model', field: 'model' },
+      { name: 'assignedTo', align: 'center', label: 'Assigned To', field: 'assignedTo', sortable: true },
+      { name: 'masterViewId', label: 'Master View Id', field: 'masterViewId', sortable: true },
+      { name: 'autoScheduleViewId', label: 'Auto Schedule ViewId', field: 'autoScheduleViewId' },
+      { name: 'recordType', label: 'Record Type', field: 'recordType' },
       { name: 'description', label: 'Description', field: 'description', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
     ],
     refData: {

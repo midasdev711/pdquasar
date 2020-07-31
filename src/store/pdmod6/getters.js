@@ -8,3 +8,9 @@ export function assetsData (state) {
 export function assetsColumnInfo (state) {
     return state.assetsColumnInfo;
 }
+export function calibrationsData (state) {
+    return state.calibrationsData;
+}
+export function calibrationsColumnInfo (state) {
+    return state.calibrationsColumnInfo;
+}

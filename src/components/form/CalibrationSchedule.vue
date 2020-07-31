@@ -9,8 +9,8 @@
           <div class="row">
             <div class="col q-pa-sm">
               Calibration Schedule Set-Up*
-              <q-radio v-model="radio1" :val="true" label="Yes" />
-              <q-radio v-model="radio1" :val="false" label="No" />
+              <q-radio v-model="form.calPeriodicAssessmentPlan" :val="true" label="Yes" />
+              <q-radio v-model="form.calPeriodicAssessmentPlan" :val="false" label="No" />
             </div>
             <div class="col q-pa-sm">
               End of the month*
@@ -84,6 +84,10 @@ export default {
       visible: true,
       radio1: true,
       radio2: true,
+      form: {
+        calPeriodicAssessmentPlan: true,
+        
+      }
     }
   },
 

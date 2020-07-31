@@ -77,7 +77,17 @@ cfg.module.rules.push({
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      proxy: {
+        // proxy all requests starting with /api to jsonplaceholder
+        '/pdapi': {
+          target: 'http://18.189.186.237:8080',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/pdapi': 'pdapi'
+          }
+        }
+      }
     },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework

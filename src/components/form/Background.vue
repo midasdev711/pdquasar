@@ -8,17 +8,17 @@
         <q-card-section v-if="visible">
           <div class="row">
             <div class="col">
-              <q-input v-model="text" label="Description*" />
+              <q-input v-model="form.description" label="Description*" />
             </div>
           </div>
           <div class="row">
             <div class="col q-pa-sm">
               CAL Assigned To
-              <q-radio v-model="radio1" :val="true" label="Internal" />
-              <q-radio v-model="radio1" :val="false" label="External" />
+              <q-radio v-model="form.calAssignedParty" :val="true" label="Internal" />
+              <q-radio v-model="form.calAssignedParty" :val="false" label="External" />
             </div>
             <div class="col q-pa-sm">
-              <q-select v-model="model" :options="options" label="Assigned to*"/>
+              <q-select v-model="form.assignedTo" :options="options" label="Assigned to*"/>
             </div>
           </div>
           <div class="row">
@@ -31,25 +31,25 @@
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <q-select v-model="model" :options="options" label="CAL Assessment Type*"/>
+              <q-select v-model="form.calAssessmentType" :options="options" label="CAL Assessment Type*"/>
             </div>
             <div class="col q-pa-sm">
-              <q-input v-model="text" label="Work Order No" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col q-pa-sm">
-              <q-select v-model="model" :options="options" label="CAL Assessment Sub Type"/>
-            </div>
-            <div class="col q-pa-sm">
+              <q-input v-model="form.refPo" label="Work Order No" />
             </div>
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <template v-for="(note, index) in notes">
+              <q-select v-model="form.calAssessmentSubType" :options="options" label="CAL Assessment Sub Type"/>
+            </div>
+            <div class="col q-pa-sm">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col q-pa-sm">
+              <template v-for="(note, index) in form.summaryNotes">
                 <q-input
                   v-model="note.value"
-                  label="Summery notes"
+                  label="Summary notes"
                   type="textarea"
                   :hint="`${note.date} System Admin`"
                   :key="`note-${index}`"
@@ -83,17 +83,18 @@ export default {
   data () {
     return {
       visible: true,
-      radio1: true,
-      model: null,
-      text: '',
       options: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
-      noteCount: 1,
-      notes: [{
-        value: "",
-        date: new Date()
-      }]
+      form: {
+        description: null,
+        calAssignedParty: true,
+        assignedTo: null,
+        calAssessmentType: null,
+        refPo: null,
+        calAssessmentSubType: null,
+        summaryNotes: []
+      }
     }
   },
 
@@ -103,7 +104,7 @@ export default {
     }),
 
     addNew() {
-      this.notes.push({
+      this.form.summaryNotes.push({
         value: "",
         date: new Date()
       });

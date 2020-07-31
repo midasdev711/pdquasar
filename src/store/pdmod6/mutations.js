@@ -5,10 +5,12 @@ export function someMutation (state) {
 import Vue from 'vue'
 
 export function updateAssets (state, assets) {
-    console.log('current assets data', state.assetsData)
-    console.log('api response:', assets)
-    //newAssets = JSON.parse(assets)
-    state.assetsData = [...assets]
+    state.assetsData = [...assets._embedded.mod6Masters]
+}
+
+export function updateCalibrations (state, calibrations) {
+    console.log(calibrations);
+    state.calibrationsData = [...calibrations._embedded.mod6Cals]
 }
 
 export function loadFromCache (state, cached) {

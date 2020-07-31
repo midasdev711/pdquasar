@@ -13,10 +13,17 @@ var login = function () {
 }
 
 var loadAssetData = function ({commit}) {
-    return axios.get('https://run.mocky.io/v3/0c938f7a-f230-4638-85be-84345a4776de')
+    return axios.get('/pdapi/mod6Masters')
         .then((response) => {
-            console.log(response);
             commit("updateAssets", response.data);
+        })
+        .catch((error) => console.log(error))
+}
+
+var loadCalibrationData = function ({commit}) {
+    return axios.get('/pdapi/mod6Cals')
+        .then((response) => {
+            commit("updateCalibrations", response.data);
         })
         .catch((error) => console.log(error))
 }
@@ -27,4 +34,4 @@ self.onmessage = e => {
     }
 }
 
-export {login, loadAssetData}
+export {login, loadAssetData, loadCalibrationData}
