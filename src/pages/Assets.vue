@@ -114,10 +114,12 @@ export default {
     // fetch the data when the view is created and the data is
     // already being observed
     this.fetchData();
+    this.loadAssetTypes();
   },
   methods: {
     ...mapActions('pdmod6', {
-      loadAssetData: 'loadAssetData'
+      loadAssetData: 'loadAssetData',
+      loadAssetTypes: 'loadAssetTypes'
     }),
     fetchData() {
       this.loadAssetData()

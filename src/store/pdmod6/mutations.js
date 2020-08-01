@@ -9,7 +9,6 @@ export function updateAssets (state, assets) {
 }
 
 export function updateCalibrations (state, calibrations) {
-    console.log(calibrations);
     state.calibrationsData = [...calibrations._embedded.mod6Cals]
 }
 
@@ -25,4 +24,9 @@ export function loadFromCache (state, cached) {
 
 export function setIsLoadingAssetData (state, isLoading) {
     state.isLoadingAssetData = isLoading;
+}
+
+export function updateAssestTypes (state, payload) {
+    state.assetTypes = [...payload._embedded.mod6AssestTypes]
+    console.log(state.assetTypes)
 }

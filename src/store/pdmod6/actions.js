@@ -28,10 +28,18 @@ var loadCalibrationData = function ({commit}) {
         .catch((error) => console.log(error))
 }
 
+var loadAssetTypes = function ({commit}) {
+    return axios.get('/pdapi/mod6AssestTypes')
+        .then((response) => {
+            commit("updateAssestTypes", response.data);
+        })
+        .catch((error) => console.log(error))
+}
+
 self.onmessage = e => {
     if (e.data === 'loadAssetData') {
         const assetData = loadAssetData()
     }
 }
 
-export {login, loadAssetData, loadCalibrationData}
+export {login, loadAssetData, loadCalibrationData, loadAssetTypes}

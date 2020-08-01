@@ -17,10 +17,10 @@
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <q-select v-model="form.assestType" :options="options" label="Pipette-Eqp Type *" />
-              <q-select v-model="form.assestSubType" :options="options" label="Manufacturer *" />
-              <q-select v-model="form.manfr" :options="options" label="Brand *" />
-              <q-select v-model="form.model" :options="options" label="Model-Vol. *" />
+              <q-select v-model="form.assestType" :options="assestTypeItems" label="Pipette-Eqp Type *" />
+              <q-select v-model="form.assestSubType" :options="assestSubTypeItems" label="Manufacturer *" />
+              <q-select v-model="form.manfr" :options="manfrItems" label="Brand *" />
+              <q-select v-model="form.model" :options="modelItems" label="Model-Vol. *" />
               <q-select v-model="form.slNo" :options="options" label="S/L No: *" />
               <q-input v-model="form.dateOfPurchase" mask="date" :rules="['date']" class="date-picker">
                 <template v-slot:append>
@@ -125,6 +125,30 @@ export default {
           date: new Date()
         }],
       }
+    }
+  },
+
+  computed: {
+    ...mapGetters("pdmod6", {
+      assetTypes: "assetTypes"
+    }),
+    assestTypeItems () {
+      return this.assetTypes.map(item => item.name);
+    },
+    assestSubTypeItems () {
+      let itemObject = this.assetTypes.filter(item => item.name == this.form.assestType);
+      return (itemObject.length > 0 && itemObject[0].mod6AssestSubTypes.map(item => item.name)) || [] ;
+    },
+    modelItems () {
+      let itemObject = this.assetTypes.filter(item => item.name == this.form.assestType);
+      let subTypeItems = (itemObject.length > 0 && itemObject[0].mod6AssestSubTypes.filter(item => item.name == this.form.assestSubType)) || []
+      return (subTypeItems.length > 0 && subTypeItems[0].models.map(item => item.name)) || [];
+    },
+    manfrItems () {
+      let itemObject = this.assetTypes.filter(item => item.name == this.form.assestType);
+      let subTypeItems = (itemObject.length > 0 && itemObject[0].mod6AssestSubTypes.filter(item => item.name == this.form.assestSubType)) || []
+      let modelItems = (subTypeItems.length > 0 && subTypeItems[0].models.filter(item => item.name == this.form.model)) || [];
+      return (modelItems.length > 0 && modelItems[0].manufacturers.map(item => item.name)) || [];
     }
   },
 

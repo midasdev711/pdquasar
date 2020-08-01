@@ -4,6 +4,7 @@ export default function () {
     initialized: false,
     isLoadingAssetData: false,
     assetsData: [],
+    assetTypes: [],
     calibrationsData: [],
     assetsColumnInfo: [
       { name: 'masterViewId', label: 'Master View Id', field: 'masterViewId', sortable: true },
