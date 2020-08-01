@@ -2,7 +2,7 @@
   <div class="form-card q-pa-md">
     <q-card>
       <q-card-section class="bg-teal-12" style="width: 100%;">
-        <div class="text-h6">CAL Testing plan*<q-icon name="minimize" class="float-right" @click="minimize"/></div>
+        <div class="text-h6">CAL Results Recording *<q-icon name="minimize" class="float-right" @click="minimize"/></div>
       </q-card-section>
       <q-slide-transition>
         <q-card-section v-if="visible">
@@ -188,6 +188,9 @@ export default {
       spareRows: [
         {spareId: 'Google', description: "", quantity: ""}
       ],
+      form: {
+        
+      }
     }
   },
 

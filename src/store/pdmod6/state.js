@@ -14,17 +14,8 @@ export default function () {
       { name: 'description', label: 'Description', field: 'description', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
     ],
     calibrationsColumnInfo: [
-      {
-        name: 'authorId',
-        required: true,
-        label: 'Id',
-        align: 'left',
-        field: row => row.authorId,
-        format: val => `${val}`,
-        sortable: true
-      },
-      { name: 'assignedTo', align: 'center', label: 'Assigned To', field: 'assignedTo', sortable: true },
       { name: 'masterViewId', label: 'Master View Id', field: 'masterViewId', sortable: true },
+      { name: 'assignedTo', align: 'center', label: 'Assigned To', field: 'assignedTo', sortable: true },
       { name: 'autoScheduleViewId', label: 'Auto Schedule ViewId', field: 'autoScheduleViewId' },
       { name: 'recordType', label: 'Record Type', field: 'recordType' },
       { name: 'description', label: 'Description', field: 'description', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },

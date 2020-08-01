@@ -9,13 +9,13 @@
           <div class="row">
             <div class="col q-pa-sm">
               CAL Spec Template *
-              <q-radio v-model="radio1" :val="true" label="Yes" />
-              <q-radio v-model="radio1" :val="false" label="No" />
+              <q-radio v-model="form.calSpecTemplate" :val="true" label="Yes" />
+              <q-radio v-model="form.calSpecTemplate" :val="false" label="No" />
             </div>
             <div class="col q-pa-sm">
               <div class="row">
                 <div class="col-10">
-                  <q-select v-model="model" :options="options" label="Manfr. Spec" :disable="!check1" />
+                  <q-select v-model="form.templateName" :options="options" label="Manfr. Spec" :disable="!check1" />
                 </div>
                 <div class="col-2 q-pl-sm">
                   <q-checkbox v-model="check1" />
@@ -27,7 +27,7 @@
             <div class="col q-pa-sm">
               <div class="row">
                 <div class="col-10">
-                  <q-select v-model="model" :options="options" label="ISO Spec" :disable="!check2" />
+                  <q-select v-model="form.additionalTemplate" :options="options" label="ISO Spec" :disable="!check2" />
                 </div>
                 <div class="col-2 q-pl-sm">
                   <q-checkbox v-model="check2" />
@@ -37,7 +37,7 @@
             <div class="col q-pa-sm">
               <div class="row">
                 <div class="col-10">
-                  <q-select v-model="model" :options="options" label="Additional template2" :disable="!check3" />
+                  <q-select v-model="form.additionalTemplate2" :options="options" label="Additional template 2" :disable="!check3" />
                 </div>
                 <div class="col-2 q-pl-sm">
                   <q-checkbox v-model="check3" />
@@ -53,12 +53,12 @@
           </div>
           <div class="row">
             <div class="col q-pa-sm">
-              <q-input v-model="text" label="Env Temp" />
-              <q-input v-model="text" label="Env Pr" />
+              <q-input v-model="form.envTemp" label="Env. Temp" />
+              <q-input v-model="form.envPr" label="Env. Pr" />
             </div>
             <div class="col q-pa-sm">
-              <q-input v-model="text" label="Env Humidity" />
-              <q-input v-model="text" label="Corre Factor" />
+              <q-input v-model="form.envHumidity" label="Env. Humidity" />
+              <q-input v-model="form.corrFactor" label="Corre Factor" />
             </div>
           </div>
           <div class="row" style="margin-top: 20px;">
@@ -193,7 +193,17 @@ export default {
       radio1: true,
       check1: true,
       check2: true,
-      check3: true
+      check3: true,
+      form: {
+        calSpecTemplate: true,
+        templateName: null,
+        additionalTemplate: null,
+        additionalTemplate2: null,
+        envTemp: null,
+        envPr: null,
+        envHumidity: null,
+        corrFactor: null,
+      }
     }
   },
 

@@ -14,8 +14,8 @@
             </div>
             <div class="col q-pa-sm">
               End of the month*
-              <q-radio v-model="radio1" :val="true" label="Yes" />
-              <q-radio v-model="radio2" :val="false" label="No" />
+              <q-radio v-model="endOftheMonth" :val="true" label="Yes" />
+              <q-radio v-model="endOftheMonth" :val="false" label="No" />
             </div>
           </div>
           <q-separator color="red" inset />
@@ -57,36 +57,36 @@ export default {
       separator: 'cell',
       columns: [
         {
-          name: 'fileId',
+          name: 'autoId',
           required: true,
-          label: 'File Id',
+          label: 'Auto Id',
           align: 'left',
-          field: row => row.fileId,
+          field: row => row.autoId,
           format: val => `${val}`,
           sortable: true
         },
-        { name: 'fileName', align: 'center', label: 'File Name', field: 'fileName', sortable: true },
-        { name: 'fileType', label: 'File Type', field: 'fileType', sortable: true },
-        { name: 'fileSize', label: 'File Size', field: 'fileSize' },
-        { name: 'dateChanged', label: 'Date Changed', field: 'dateChanged' },
-        { name: 'changedBy', label: 'Changed By', field: 'changedBy' },
+        { name: 'description', align: 'center', label: 'Description', field: 'description', sortable: true },
+        { name: 'assignedTo', label: 'Assigned to', field: 'assignedTo', sortable: true },
+        { name: 'startDate', label: 'Start Date', field: 'startDate' },
+        { name: 'dueDate', label: 'Due Date', field: 'dueDate' },
+        { name: 'intervalDays', label: 'Interval (days)', field: 'intervalDays' },
+        { name: 'status', label: 'Status', field: 'status' },
       ],
       data: [
         {
-          fileId: 234,
-          fileName: "test",
-          fileType: 'png',
-          fileSize: 24,
-          dateChanged: '09/09/2020',
-          changedBy: 'Test User',
+          autoId: 'Cal-295',
+          description: "Cal Schedule",
+          assignedTo: 'Emily G',
+          startDate: '05/15/2020',
+          dueDate: '11/30/2020',
+          intervalDays: 180,
+          status: ''
         },
       ],
       visible: true,
-      radio1: true,
-      radio2: true,
+      endOftheMonth: true,
       form: {
         calPeriodicAssessmentPlan: true,
-        
       }
     }
   },
@@ -102,12 +102,13 @@ export default {
 
     addNew() {
       this.data.push({
-        fileId: 234,
-        fileName: "test",
-        fileType: 'png',
-        fileSize: 24,
-        dateChanged: '09/09/2020',
-        changedBy: 'Test User',
+        autoId: 'Cal-295',
+        description: "Cal Schedule",
+        assignedTo: 'Emily G',
+        startDate: '05/15/2020',
+        dueDate: '11/30/2020',
+        intervalDays: 180,
+        status: ''
       });
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <AttachmentSection />
+    <AttachmentSectionWithUpload />
     <BackgroundSummary />
     <CalSpecTemplate />
     <CalibrationSchedule/>
@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import AttachmentSection from './form/AttachmentSection';
+import { required } from "vuelidate/lib/validators";
+import AttachmentSectionWithUpload from './form/AttachmentSectionWithUpload';
 import BackgroundSummary from './form/BackgroundSummary';
 import CalSpecTemplate from './form/CalSpecTemplate';
 import CalibrationSchedule from './form/CalibrationSchedule';
@@ -20,12 +21,26 @@ import RolesAndResponsibility from './form/RolesAndResponsibility';
 export default {
   name: 'Form1',
   components: {
-  	AttachmentSection,
+  	AttachmentSectionWithUpload,
   	BackgroundSummary,
   	CalSpecTemplate,
     CalibrationSchedule,
     PreventativeMaintenance,
     RolesAndResponsibility
-  }
+  },
+  validations: {
+    form: {
+      name: { required },
+      email: { required }
+    }
+  },
+  data() {
+    return {
+      form: {
+        name: "",
+        email: ""
+      }
+    };
+  },
 }
 </script>

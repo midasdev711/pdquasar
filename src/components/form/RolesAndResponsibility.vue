@@ -9,11 +9,11 @@
           <div class="row">
             <div class="col q-pa-sm">
               Approval Required
-              <q-radio v-model="radio1" :val="true" label="Yes" />
-              <q-radio v-model="radio1" :val="false" label="No" />
+              <q-radio v-model="form.approvalRequired" :val="true" label="Yes" />
+              <q-radio v-model="form.approvalRequired" :val="false" label="No" />
             </div>
             <div class="col q-pa-sm">
-              <q-select v-model="model" :options="options" label="Default Coordinate*"/>
+              <q-select v-model="form.defaultCoordinator" :options="options" label="Default Coordinator*"/>
             </div>
           </div>
         </q-card-section>
@@ -35,6 +35,10 @@ export default {
       options: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
+      form: {
+        approvalRequired: true,
+        defaultCoordinator: null
+      }
     }
   },
 

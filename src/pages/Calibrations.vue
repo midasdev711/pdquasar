@@ -14,6 +14,7 @@
       row-key="id"
       :filter="filters"
       :filter-method="customFilter"
+      :pagination.sync="pagination"
     >
       <template v-slot:top-right>
         <q-input borderless dense debounce="300" v-model="filters['global']" placeholder="Search">
@@ -77,6 +78,13 @@ export default {
       eqpSelectType: "",
       eqpSelectSubType: "",
       filters: {},
+      pagination: {
+        sortBy: 'desc',
+        descending: false,
+        page: 1,
+        rowsPerPage: 10
+        // rowsNumber: xx if getting data from a server
+      },
     };
   },
   components: {
@@ -125,14 +133,14 @@ export default {
 
         for (var key in terms) {
           if (key != 'global') {
-            if (item[key].toLowerCase().indexOf(terms[key].toLowerCase()) == -1) {
+            if (item[key] && item[key].toLowerCase().indexOf(terms[key].toLowerCase()) == -1) {
               isCorrectItem = false;
             }
           }
           if (key == 'global') {
             let isIncludeGlobalWord = false;
             for (var itemKey in item) {
-              if (item[itemKey].toString().toLowerCase().indexOf(terms['global'].toLowerCase()) > -1) {
+              if (item[itemKey] && item[itemKey].toString().toLowerCase().indexOf(terms['global'].toLowerCase()) > -1) {
                 isIncludeGlobalWord = true;
               }
             }
